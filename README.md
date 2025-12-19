@@ -1,3 +1,8 @@
+# API
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-green.svg)](https://fastapi.tiangolo.com)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-orange.svg)](https://sqlalchemy.org)
+
 #API autenticação de usuarios e clientes com perfis personalizados 
 
 ## 📊 Diagrama ER - Modelagem de Dados
@@ -36,4 +41,5 @@ erDiagram
         string ativo
         string admin
     }
+
 
