@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from auth.clientes import auth
+from auth.auth_router import auth
 from order_router import order
 from auth.clientes import auth as clientes_router
 

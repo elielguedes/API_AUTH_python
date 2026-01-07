@@ -3,6 +3,7 @@ from models import servicos
 from sqlalchemy.orm import Session
 from dependecias import pegar_sessao , verificar_token_clientes
 from schemas import servicos_schemas
+from uuid import UUID
 
 order = APIRouter(prefix = "/servicos", tags=['servicos'])
 
@@ -25,18 +26,13 @@ async def criar_server(
     session.commit()
     return {"mensagem": f"Serviço criado com sucesso {servico.id}"}
 
-@order.delete("/serviços/cancelar/id_servico")
-async def deletar_servico(
-    id_servico: int,
-    session: Session = Depends(pegar_sessao),
-    current_cliente = Depends(verificar_token_clientes)
-):
+
+@order.delete("/servicos/deletar/{id_servico}")
+async def deletar(id_servico: UUID , session: Session = Depends(pegar_sessao)):
     servico = session.query(servicos).filter(servicos.id == id_servico).first()
     if not servico:
-        raise HTTPException(status_code=400, detail="pedido não existente")
+        raise HTTPException(status_code = 400 , detail="Serviço Indisponivel")
     session.delete(servico)
     session.commit()
-    return {
-        "mensagem": f"servico número {id_servico} cancelado com sucesso",
-        "servico": servico
-    }
+
+    return {"mensagem":"Pedido deletado com sucesso"}
